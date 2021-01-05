@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react"
-import { Global } from "@emotion/react"
+import { css, Global } from "@emotion/react"
 import { StrictMode } from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
