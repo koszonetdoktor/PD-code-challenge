@@ -24,7 +24,9 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "start-server": "cd server && npm start",
-        "start-ui": "react-scripts start"
+        "start-ui": "react-scripts start",
+        "install-all": "yarn install && npm run install-server",
+        "install-server": "cd server && yarn install"
     },
     "eslintConfig": {
         "extends": [
