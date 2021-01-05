@@ -10,11 +10,7 @@ type Props = {
 
 export default function Button({ children, className, onClick }: Props) {
     return (
-        <button
-            onClick={disabled ? undefined : onClick}
-            css={styles.root}
-            className={className}
-        >
+        <button onClick={onClick} css={styles.root} className={className}>
             {children}
         </button>
     )
