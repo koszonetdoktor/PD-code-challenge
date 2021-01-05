@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar"
 import { useFeed } from "./services/useFeed"
 import Spinner from "./components/Spinner"
 import ErrorSign from "./components/ErrorSign"
+import { colors, sizes } from "./styles"
 
 function App() {
     const { loading, error, feed, updateTags } = useFeed()
@@ -13,15 +14,17 @@ function App() {
 
     return (
         <div css={styles.root}>
-            <SearchBar
-                onSearch={(tags) => updateTags(tags)}
-                loading={loading}
-            />
-            {loading ? (
-                <Spinner />
-            ) : (
-                <ImageGrid feedItems={feed ? feed.items : []} />
-            )}
+            <div css={styles.innerContainer}>
+                <SearchBar
+                    onSearch={(tags) => updateTags(tags)}
+                    loading={loading}
+                />
+                {loading ? (
+                    <Spinner />
+                ) : (
+                    <ImageGrid feedItems={feed ? feed.items : []} />
+                )}
+            </div>
         </div>
     )
 }
@@ -30,7 +33,14 @@ export default App
 
 const styles = {
     root: css`
-        max-width: 800px;
+        background-color: ${colors.primary.light};
+    `,
+    innerContainer: css`
         margin: auto;
+        max-width: 800px;
+        padding: ${sizes.font.s};
+        border-radius: 0 0 ${sizes.font.s} ${sizes.font.s};
+        min-height: 100vh;
+        background: white;
     `,
 }

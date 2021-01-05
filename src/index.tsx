@@ -1,16 +1,25 @@
-import React from "react"
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react"
+import { Global } from "@emotion/react"
+import { StrictMode } from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
-import reportWebVitals from "./reportWebVitals"
+import { colors } from "./styles"
+
+const styles = {
+    root: css`
+        body {
+            font-family: "sans-serif";
+            background-color: ${colors.primary.light};
+            margin: 0;
+        }
+    `,
+}
 
 ReactDOM.render(
-    <React.StrictMode>
+    <StrictMode>
+        <Global styles={styles.root} />
         <App />
-    </React.StrictMode>,
+    </StrictMode>,
     document.getElementById("root")
 )
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
