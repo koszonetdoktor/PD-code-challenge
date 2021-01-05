@@ -17,6 +17,7 @@ export function useFeed(): {
         isMounted.current = true
         async function init() {
             try {
+                setLoading(true)
                 const tagsQuery = `tags=${tags.join(",")}`
                 const response = await fetch(
                     `/feeds${tags.length ? `?${tagsQuery}` : ""}`

@@ -6,10 +6,11 @@ import Button from "./Button"
 import Input from "./Input"
 
 type Props = {
+    loading: boolean
     onSearch: (tags: string[]) => void
 }
 
-export default function SearchBar({ onSearch }: Props) {
+export default function SearchBar({ loading, onSearch }: Props) {
     const [searchText, setSearchText] = useState("")
 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +18,7 @@ export default function SearchBar({ onSearch }: Props) {
     }
 
     const handleSearchClick = () => {
-        const tags = searchText.split(" ")
+        const tags = searchText !== "" ? searchText.split(" ") : []
         onSearch(tags)
     }
 
@@ -26,9 +27,14 @@ export default function SearchBar({ onSearch }: Props) {
             <Input
                 value={searchText}
                 onChange={handleSearchChange}
+                onEnter={handleSearchClick}
                 css={styles.input}
             />
-            <Button onClick={handleSearchClick} css={styles.button}>
+            <Button
+                onClick={handleSearchClick}
+                disabled={loading}
+                css={styles.button}
+            >
                 Search
             </Button>
         </div>
