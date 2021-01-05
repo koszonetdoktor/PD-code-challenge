@@ -14,7 +14,6 @@ export function useFeed(): {
     const [tags, setTags] = useState<string[]>([])
 
     useEffect(() => {
-        console.log("updated", tags)
         isMounted.current = true
         async function init() {
             try {

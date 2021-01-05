@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
 import { ChangeEvent } from "react"
+import { colors, sizes } from "../styles"
 
 type Props = {
     value: string
@@ -20,5 +21,14 @@ export default function Input({ value, className, onChange }: Props) {
 }
 
 const styles = {
-    root: css``,
+    root: css`
+        border-width: 0;
+        background: ${colors.primary.light};
+        border-radius: 2rem;
+        color: ${colors.primary.dark};
+        font-size: ${sizes.font.s};
+        outline: none;
+        text-indent: ${sizes.space.s};
+        padding: ${sizes.space.s};
+    `,
 }
