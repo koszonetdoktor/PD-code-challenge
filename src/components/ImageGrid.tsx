@@ -7,10 +7,12 @@ type Props = {
 }
 
 export default function ImageGrid({ feedItems }: Props) {
+    if (feedItems.length === 0) return <div>No image</div>
+
     return (
         <ul css={styles.list}>
-            {feedItems.map((item) => (
-                <li key={item.date_taken}>
+            {feedItems.map((item, index) => (
+                <li key={`${item.date_taken}${item.title}${index}`}>
                     <img src={item.media.m} alt={item.title} />
                 </li>
             ))}

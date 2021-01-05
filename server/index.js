@@ -5,9 +5,7 @@ const port = 3001
 
 app.get("/feeds", async (req, res) => {
     try {
-        console.log("calling feeds")
-        const feeds = await getFeeds()
-        console.log("feeds", feeds)
+        const feeds = await getFeeds(req.query.tags)
         res.send(feeds)
     } catch (err) {
         console.error(err)
@@ -19,9 +17,9 @@ app.listen(port, () => {
     console.log(`Proxy server is listening at http://localhost:${port}`)
 })
 
-const getFeeds = async () => {
-    const response = await axios.get(
+const getFeeds = async (tags) => {
+    const url =
         "https://www.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"
-    )
+    const response = await axios.get(url, { params: { tags } })
     return response.data
 }

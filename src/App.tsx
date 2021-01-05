@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import ImageGrid from "./components/ImageGrid"
-import Input from "./components/Input"
+import SearchBar from "./components/SearchBar"
 import { useFeed } from "./services/useFeed"
 
 function App() {
-    const { loading, error, feed } = useFeed()
+    const { loading, error, feed, updateTags } = useFeed()
 
     if (loading) return <div>Spinner</div>
     if (!feed) return <div>Page not found</div>
@@ -12,7 +12,7 @@ function App() {
 
     return (
         <div>
-            <Input onChange={} />
+            <SearchBar onSearch={(tags) => updateTags(tags)} />
             <ImageGrid feedItems={feed.items} />
         </div>
     )
