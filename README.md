@@ -4,7 +4,7 @@ The application is using React. It also implements a small server to proxy the r
 
 ## Run in development
 
-Install dependencies with:
+Install dependencies with (you need Yarn):
 
 ```
 npm run install-all
