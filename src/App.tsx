@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react"
+import { getFeed } from "./services"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [error, setError] = useState<string | null>(null)
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        async function init() {
+            try {
+                setLoading(true)
+                const response = await getFeed()
+                console.log("RESP", response)
+            } catch (err) {
+                setError("Could not get feed!")
+                console.log("ERR", err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        init()
+    }, [])
+
+    return <div>Hello</div>
 }
 
-export default App;
+export default App
