@@ -5,20 +5,14 @@ import { colors, sizes } from "../styles"
 type Props = {
     children: string
     onClick: () => void
-    disabled?: boolean
     className?: string
 }
 
-export default function Button({
-    children,
-    className,
-    disabled,
-    onClick,
-}: Props) {
+export default function Button({ children, className, onClick }: Props) {
     return (
         <button
             onClick={disabled ? undefined : onClick}
-            css={disabled ? [styles.root, styles.disabled] : styles.root}
+            css={styles.root}
             className={className}
         >
             {children}
@@ -43,15 +37,6 @@ const styles = {
         &:hover {
             border-color: ${colors.secondary};
             cursor: pointer;
-        }
-    `,
-    disabled: css`
-        background-color: ${colors.primary.light};
-        color: white;
-        &:hover {
-            cursor: default;
-            background-color: ${colors.primary.light};
-            border-color: transparent;
         }
     `,
 }

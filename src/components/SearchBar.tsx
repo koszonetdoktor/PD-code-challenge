@@ -28,11 +28,7 @@ export default function SearchBar({ onSearch }: Props) {
                 onChange={handleSearchChange}
                 css={styles.input}
             />
-            <Button
-                disabled={searchText === ""}
-                onClick={handleSearchClick}
-                css={styles.button}
-            >
+            <Button onClick={handleSearchClick} css={styles.button}>
                 Search
             </Button>
         </div>
