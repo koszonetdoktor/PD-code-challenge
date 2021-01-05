@@ -1,4 +1,4 @@
-# Planday code challenge
+# Code challenge
 
 The application is using React. It also implements a small server to proxy the request between the UI and Flickr's public API.
 
