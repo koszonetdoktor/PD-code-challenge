@@ -28,16 +28,20 @@ export default function ImageGrid({ feedItems }: Props) {
 const styles = {
     root: css`
         display: grid;
-        grid-template-columns: repeat(auto-fit, 10rem);
         grid-gap: 6px;
+        grid-template-columns: repeat(auto-fit, 100%);
         justify-content: center;
         padding-top: ${sizes.space.m};
+        @media (min-width: 25rem) {
+            grid-template-columns: repeat(auto-fit, 10rem);
+        }
     `,
     imgContainer: css`
         & img {
             max-width: 100%;
             max-height: 100%;
-            display: block; /* remove extra space below image */
+            display: block;
+            margin: auto;
         }
     `,
     noImage: css`
