@@ -20,11 +20,14 @@ export function useFeed(): {
                 setLoading(true)
                 const tagsQuery = `tags=${tags.join(",")}`
                 const response = await fetch(
-                    `/feeds${tags.length ? `?${tagsQuery}` : ""}`
+                    `/.netlify/functions/feed${
+                        tags.length ? `?${tagsQuery}` : ""
+                    }`
                 )
                 if (response.ok) {
                     const json = await response.json()
-                    if (isMounted.current) setFeed(json)
+                    console.log("JSON", json)
+                    if (isMounted.current) setFeed(json.data)
                 } else {
                     throw response
                 }
