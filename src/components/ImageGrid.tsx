@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react"
+import { useState } from "react"
 import { sizes } from "../styles"
 import { FeedItem } from "../types"
 
@@ -8,6 +9,17 @@ type Props = {
 }
 
 export default function ImageGrid({ feedItems }: Props) {
+    const [selectedImages, setSelectedImages] = useState<Set<string>>(new Set())
+
+    const handleClick = (title: string) => () => {
+        if (selectedImages.has(title)) {
+            selectedImages.delete(title)
+        } else {
+            selectedImages.add(title)
+        }
+        setSelectedImages(new Set(Array.from(selectedImages)))
+    }
+
     if (feedItems.length === 0)
         return <h1 css={styles.noImage}>No image found</h1>
 
@@ -16,9 +28,15 @@ export default function ImageGrid({ feedItems }: Props) {
             {feedItems.map((item, index) => (
                 <div
                     key={`${item.date_taken}${item.title}${index}`}
-                    css={styles.imgContainer}
+                    css={
+                        selectedImages.has(item.title)
+                            ? [styles.selected, styles.title]
+                            : styles.title
+                    }
+                    onClick={handleClick(item.title)}
                 >
-                    <img src={item.media.m} alt={item.title} />
+                    {item.title}
+                    {/* <img src={item.media.m} alt={item.title} /> */}
                 </div>
             ))}
         </div>
@@ -46,5 +64,16 @@ const styles = {
     `,
     noImage: css`
         text-align: center;
+    `,
+    selected: css`
+        color: cyan;
+    `,
+    title: css`
+        font-weight: bold;
+        font-family: sans-serif;
+        text-decoration: underline;
+        &:hover {
+            cursor: pointer;
+        }
     `,
 }
