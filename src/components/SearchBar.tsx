@@ -20,6 +20,9 @@ export default function SearchBar({ loading, onSearch }: Props) {
     const handleSearchClick = () => {
         const tags = searchText !== "" ? searchText.split(" ") : []
         onSearch(tags)
+        analytics.track("Searched", {
+            tags,
+        })
     }
 
     return (

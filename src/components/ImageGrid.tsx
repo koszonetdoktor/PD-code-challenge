@@ -18,6 +18,9 @@ export default function ImageGrid({ feedItems }: Props) {
             selectedImages.add(title)
         }
         setSelectedImages(new Set(Array.from(selectedImages)))
+        analytics.track("Selected", {
+            image: title,
+        })
     }
 
     if (feedItems.length === 0)
